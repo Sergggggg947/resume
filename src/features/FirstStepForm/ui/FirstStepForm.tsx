@@ -91,12 +91,12 @@ const FirstStepForm = () => {
                   placeholder="5 years"
                   value={
                     firstStepData?.experience !== undefined &&
-                    firstStepData?.experience.length >= 2
-                      ? firstStepData?.experience.slice(0, 2)
-                      : firstStepData?.experience
+                    firstStepData?.experience !== ""
+                      ? Number(firstStepData?.experience)
+                      : undefined
                   }
                   onChange={(event) =>
-                    handleWritedata({ field: "experience", data: event ?? 0 })
+                    handleWritedata({ field: "experience", data: String(event ?? "") })
                   }
                 />
               </div>
