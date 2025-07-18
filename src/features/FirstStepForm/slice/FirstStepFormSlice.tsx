@@ -48,6 +48,23 @@ export const StepFormSlice = {
         const { field, data, index, subField } = payload;
 
         set(initialState.$resumeData, (draft) => {
+          // Initialize draft if it's null
+          if (!draft) {
+            draft = {
+              name: "",
+              role: "",
+              experience: "",
+              education: "",
+              location: "",
+              email: "",
+              phoneNumber: "",
+              summary: "",
+              skills: [],
+              professionalPath: [],
+              educationDetails: []
+            };
+          }
+
           if (typeof index !== "undefined" && subField) {
             if (Array.isArray((draft as ResumeData)[field])) {
               const newArray = [

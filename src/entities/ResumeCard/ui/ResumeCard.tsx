@@ -196,7 +196,6 @@ function EducationInfo() {
 function PersonalInfo() {
   const firstStepData = useAtomValue(initialState.$resumeData);
   const handleWritedata = useSetAtom($onFirstStepMutation);
-  const resumePhoto = useAtomValue(StepFormSlice.initialState.$resumePhoto);
 
   return (
     <div>
@@ -206,7 +205,7 @@ function PersonalInfo() {
         </div>
       </div>
       <div className={cls.personalInfoWrapper}>
-        <div className={cls.flexInputs}>
+        <div className={cls.formFields}>
           <div className={cls.inputTitleWrapper}>
             <Typography.IbmPlexMono className={cls.inputText}>
               Full Name
@@ -217,16 +216,14 @@ function PersonalInfo() {
               size="large"
               variant="outlined"
               placeholder="Enter your full name"
-              value={firstStepData?.name || undefined}
+              value={firstStepData?.name || ""}
               onChange={(e) =>
                 handleWritedata({ field: "name", data: e.target.value })
               }
             />
           </div>
-        </div>
 
-        <div className={cls.flexInputs}>
-          <div className={cls.expirienceGridContainer}>
+          <div className={cls.gridFields}>
             <div className={cls.inputTitleWrapper}>
               <Typography.IbmPlexMono className={cls.inputText}>
                 Position
@@ -237,37 +234,33 @@ function PersonalInfo() {
                 size="large"
                 variant="outlined"
                 placeholder="Enter your position"
-                value={firstStepData?.role || undefined}
+                value={firstStepData?.role || ""}
                 onChange={(e) =>
                   handleWritedata({ field: "role", data: e.target.value })
                 }
               />
             </div>
-            <div className={cls.flexInputs}>
-              <div className={cls.inputTitleWrapper}>
-                <Typography.IbmPlexMono className={cls.inputText}>
-                  Experience
-                </Typography.IbmPlexMono>
-                <InputNumber
-                  size="large"
-                  variant="outlined"
-                  placeholder="Years"
-                  value={
-                    firstStepData?.experience !== undefined &&
-                      firstStepData?.experience.length >= 2
-                      ? firstStepData?.experience.slice(0, 2)
-                      : firstStepData?.experience
-                  }
-                  onChange={(event) =>
-                    handleWritedata({ field: "experience", data: event ?? 0 })
-                  }
-                />
-              </div>
+            <div className={cls.inputTitleWrapper}>
+              <Typography.IbmPlexMono className={cls.inputText}>
+                Experience
+              </Typography.IbmPlexMono>
+              <InputNumber
+                size="large"
+                variant="outlined"
+                placeholder="Years"
+                value={
+                  firstStepData?.experience !== undefined &&
+                    firstStepData?.experience !== ""
+                    ? Number(firstStepData?.experience)
+                    : undefined
+                }
+                onChange={(event) =>
+                  handleWritedata({ field: "experience", data: String(event ?? "") })
+                }
+              />
             </div>
           </div>
-        </div>
 
-        <div className={cls.flexInputs}>
           <div className={cls.inputTitleWrapper}>
             <Typography.IbmPlexMono className={cls.inputText}>
               Education
@@ -277,63 +270,62 @@ function PersonalInfo() {
               size="large"
               variant="outlined"
               placeholder="Enter your education"
-              value={firstStepData?.education || undefined}
+              value={firstStepData?.education || ""}
               onChange={(e) =>
                 handleWritedata({ field: "education", data: e.target.value })
               }
             />
           </div>
-        </div>
 
-        <div className={cls.inputTitleWrapper}>
-          <Typography.IbmPlexMono className={cls.inputText}>
-            Location
-          </Typography.IbmPlexMono>
-          <Input
-            allowClear
-            size="large"
-            variant="outlined"
-            placeholder="Enter your location"
-            value={firstStepData?.location || undefined}
-            onChange={(e) =>
-              handleWritedata({ field: "location", data: e.target.value })
-            }
-          />
-        </div>
+          <div className={cls.inputTitleWrapper}>
+            <Typography.IbmPlexMono className={cls.inputText}>
+              Location
+            </Typography.IbmPlexMono>
+            <Input
+              allowClear
+              size="large"
+              variant="outlined"
+              placeholder="Enter your location"
+              value={firstStepData?.location || ""}
+              onChange={(e) =>
+                handleWritedata({ field: "location", data: e.target.value })
+              }
+            />
+          </div>
 
-        <div className={cls.inputTitleWrapper}>
-          <Typography.IbmPlexMono className={cls.inputText}>
-            Email
-            <sub className={cls.required}>*</sub>
-          </Typography.IbmPlexMono>
-          <Input
-            size="large"
-            variant="outlined"
-            type="email"
-            placeholder="Enter your email"
-            value={firstStepData?.email || undefined}
-            onChange={(e) =>
-              handleWritedata({ field: "email", data: e.target.value })
-            }
-          />
-        </div>
+          <div className={cls.inputTitleWrapper}>
+            <Typography.IbmPlexMono className={cls.inputText}>
+              Email
+              <sub className={cls.required}>*</sub>
+            </Typography.IbmPlexMono>
+            <Input
+              size="large"
+              variant="outlined"
+              type="email"
+              placeholder="Enter your email"
+              value={firstStepData?.email || ""}
+              onChange={(e) =>
+                handleWritedata({ field: "email", data: e.target.value })
+              }
+            />
+          </div>
 
-        <div className={cls.inputTitleWrapper}>
-          <Typography.IbmPlexMono className={cls.inputText}>
-            About Me
-            <sub className={cls.required}>*</sub>
-          </Typography.IbmPlexMono>
-          <TextArea
-            style={{ height: 120, resize: "none" }}
-            allowClear
-            size="large"
-            variant="outlined"
-            placeholder="Write a brief description about yourself"
-            value={firstStepData?.summary || undefined}
-            onChange={(e) =>
-              handleWritedata({ field: "summary", data: e.target.value })
-            }
-          />
+          <div className={cls.inputTitleWrapper}>
+            <Typography.IbmPlexMono className={cls.inputText}>
+              About Me
+            </Typography.IbmPlexMono>
+            <TextArea
+              style={{ height: 120, resize: "none" }}
+              allowClear
+              size="large"
+              variant="outlined"
+              placeholder="Write a brief description about yourself"
+              value={firstStepData?.summary || ""}
+              onChange={(e) =>
+                handleWritedata({ field: "summary", data: e.target.value })
+              }
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -547,14 +539,11 @@ const ResumeCard = ({ cardName, icon, id }: ResumeCardProps) => {
   const getButtonText = () => {
     switch (id) {
       case 'education':
-        const hasEducation = firstStepData?.educationDetails && firstStepData.educationDetails.length > 0;
-        return hasEducation ? `+ Add ${cardName}` : `+ Add ${cardName}`;
+        return `+ Add Education`;
       case 'workExpirience':
-        const hasWork = firstStepData?.professionalPath && firstStepData.professionalPath.length > 0;
-        return hasWork ? `+ Add ${cardName}` : `+ Add ${cardName}`;
+        return `+ Add Experience`;
       case 'skills':
-        const hasSkills = firstStepData?.skills && firstStepData.skills.length > 0;
-        return hasSkills ? `+ Add ${cardName}` : `+ Add ${cardName}`;
+        return `+ Add Skills`;
       default:
         return `+ Add`;
     }
