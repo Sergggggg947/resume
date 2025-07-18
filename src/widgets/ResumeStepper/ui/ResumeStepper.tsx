@@ -8,19 +8,26 @@ import { StepFormSlice } from "@features/FirstStepForm/slice/FirstStepFormSlice"
 import { useAtomValue, useSetAtom } from "jotai";
 import { SecondStepForm } from "@features/SecondStepForm/ui/SecondStepForm";
 import { EducationStep } from "@features/EducationStep/ui/EducationStep";
+import { useEffect } from "react";
 
 const StepperContent = [<FirstStepForm />, <EducationStep />, <SecondStepForm />,  <ResumeSelectGrid />, <ResumeContainer />];
 
 const { $currentResumeStep } = StepFormSlice.initialState;
-const { $handleResumeStepChange } = StepFormSlice.actions;
+const { $handleResumeStepChange, $initializeResumeData } = StepFormSlice.actions;
 
 function ResumeStepper() {
   const current = useAtomValue($currentResumeStep);
 
   const setCurrent = useSetAtom($handleResumeStepChange);
+  const initializeResumeData = useSetAtom($initializeResumeData);
   
   // Hide stepper on the last step (Resume Editor)
   const shouldShowStepper = current < StepperContent.length - 1;
+
+  // Initialize resume data when the stepper mounts
+  useEffect(() => {
+    initializeResumeData();
+  }, [initializeResumeData]);
   
   return (
     <>

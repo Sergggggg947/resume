@@ -67,19 +67,17 @@ function ResumeContainer() {
             <div className={cls.resumeWrap}>
               {pageOffsets.map((offsets, idx) => (
                 <>
-                  {idx > 0 && <div className={cls.spacer} />}
+              <React.Fragment key={`page-${idx}`}>
                   <div className={cls.resumePageBreak}>
                     <ResumeTemplate1
                       key={offsets}
-                      photo={photo}
                       resumeData={resumeData as ResumeData}
                       // resumeData={resumeMock}
-                      allowEditing
                       contentSpace={offsets}
                     />
                   </div>
                 </>
-              ))}
+              </React.Fragment>
             </div>
           </div>
         </div>

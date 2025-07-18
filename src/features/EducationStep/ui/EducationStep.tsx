@@ -7,6 +7,7 @@ import { StepFormSlice } from "@features/FirstStepForm/slice/FirstStepFormSlice"
 import { useAtomValue, useSetAtom } from "jotai";
 import { CloseOutlined } from "@ant-design/icons";
 import { ResumeData } from "@entities/resumes/ResumeTemplate1/api/types";
+import { useEffect } from "react";
 
 export const selectOption = [
   {
@@ -34,6 +35,7 @@ const {
   $onDeleteEducationButtonClick,
   $handleResumeStepChange,
   $handleUpdateResumeDataMutation,
+  $initializeResumeData,
 } = StepFormSlice.actions;
 
 const EducationStep = () => {
@@ -43,6 +45,12 @@ const EducationStep = () => {
   const handleDeleteEducation = useSetAtom($onDeleteEducationButtonClick);
   const handleResumeStepChange = useSetAtom($handleResumeStepChange);
   const handleResumeClearForm = useSetAtom($handleUpdateResumeDataMutation);
+  const initializeResumeData = useSetAtom($initializeResumeData);
+
+  // Initialize resume data when component mounts
+  useEffect(() => {
+    initializeResumeData();
+  }, [initializeResumeData]);
 
   return (
     <div className={cls.container}>

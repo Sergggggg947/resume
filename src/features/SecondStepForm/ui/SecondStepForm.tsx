@@ -8,7 +8,7 @@ import classNames from "classnames";
 import TextArea from "antd/es/input/TextArea";
 import { CloseOutlined } from "@ant-design/icons";
 import { ResumeData } from "@entities/resumes/ResumeTemplate1/api/types";
-// type SecondStepFormProps = {};
+import { useEffect } from "react";
 
 const {
   $handleResumeStepChange,
@@ -16,24 +16,25 @@ const {
   $onAddWorkExpirienceButtonClick,
   $onDeleteWorkExpirienceButtonClick,
   $handleWriteProfessionalExperienceChangeIndex,
+  $initializeResumeData,
 } = StepFormSlice.actions;
-// const { $validateSecondStepRequeredFields } = StepFormSlice.selectors;
 const { initialState } = StepFormSlice;
 
 const SecondStepForm = () => {
-  // const validateRequiredFields = useAtomValue(
-  //   $validateSecondStepRequeredFields
-  // );
   const handleWritedata = useSetAtom($handleWriteProfessionalExperienceChangeIndex);
 
   const handleResumeStepChange = useSetAtom($handleResumeStepChange);
   const handleResumeClearForm = useSetAtom($handleUpdateResumeDataMutation);
   const onAddWorkButtonClick = useSetAtom($onAddWorkExpirienceButtonClick);
   const onDeleteWorkCrossClick = useSetAtom($onDeleteWorkExpirienceButtonClick);
-  // const fields = useAtomValue(initialState.$cardsData).filter(
-  //   (el) => el.id === "workExpirience"
-  // );
+  const initializeResumeData = useSetAtom($initializeResumeData);
   const resumeData = useAtomValue(initialState.$resumeData);
+
+  // Initialize resume data when component mounts
+  useEffect(() => {
+    initializeResumeData();
+  }, [initializeResumeData]);
+
   return (
     <div className={cls.container}>
       <div className={cls.mainWrapper}>

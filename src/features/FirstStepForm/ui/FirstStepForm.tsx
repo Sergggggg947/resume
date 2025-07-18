@@ -5,12 +5,14 @@ import FileUploader from "@shared/ui/UploadPhoto/UploadPhoto";
 import { StepFormSlice } from "../slice/FirstStepFormSlice";
 import { useAtomValue, useSetAtom } from "jotai";
 import { ResumeData } from "@entities/resumes/ResumeTemplate1/api/types";
+import { useEffect } from "react";
 
 const {
   $onFirstStepMutation,
   $handleResumeStepChange,
   $handleUpdateResumeDataMutation,
   $handleSetResumePhoto,
+  $initializeResumeData,
 } = StepFormSlice.actions;
 const { $validateFirstStepRequiredFields } = StepFormSlice.selectors;
 const { initialState } = StepFormSlice;
@@ -23,6 +25,12 @@ const FirstStepForm = () => {
   const handleResumeStepChange = useSetAtom($handleResumeStepChange);
   const handleResumeClearForm = useSetAtom($handleUpdateResumeDataMutation);
   const handleSetResumePhoto = useSetAtom($handleSetResumePhoto);
+  const initializeResumeData = useSetAtom($initializeResumeData);
+
+  // Initialize resume data when component mounts
+  useEffect(() => {
+    initializeResumeData();
+  }, [initializeResumeData]);
 
   return (
     <div className={cls.container}>

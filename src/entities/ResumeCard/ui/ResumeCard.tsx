@@ -196,12 +196,13 @@ function EducationInfo() {
 function PersonalInfo() {
   const firstStepData = useAtomValue(initialState.$resumeData);
   const handleWritedata = useSetAtom($onFirstStepMutation);
+  const resumePhoto = useAtomValue(StepFormSlice.initialState.$resumePhoto);
 
   return (
     <div>
       <div className={cls.uploadPhoto}>
         <div className={cls.photo}>
-        <FileUploader />
+          <FileUploader />
         </div>
       </div>
       <div className={cls.personalInfoWrapper}>
@@ -229,6 +230,7 @@ function PersonalInfo() {
             <div className={cls.inputTitleWrapper}>
               <Typography.IbmPlexMono className={cls.inputText}>
                 Position
+                <sub className={cls.required}>*</sub>
               </Typography.IbmPlexMono>
               <Input
                 allowClear

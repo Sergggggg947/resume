@@ -287,5 +287,26 @@ export const StepFormSlice = {
       set(initialState.$resumeData, aiGeneratedData);
       set(initialState.$isAfterGeneration, true);
     }),
+
+    // Initialize empty resume data if none exists
+    $initializeResumeData: atom(null, (get, set) => {
+      const currentData = get(initialState.$resumeData);
+      if (!currentData) {
+        const emptyData: ResumeData = {
+          name: "",
+          role: "",
+          experience: "",
+          education: "",
+          location: "",
+          email: "",
+          phoneNumber: "",
+          summary: "",
+          skills: [],
+          professionalPath: [],
+          educationDetails: []
+        };
+        set(initialState.$resumeData, emptyData);
+      }
+    }),
   },
 };

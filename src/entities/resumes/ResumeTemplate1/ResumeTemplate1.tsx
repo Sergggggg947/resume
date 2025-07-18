@@ -49,11 +49,14 @@ const ResumeTemplate1 = React.forwardRef<HTMLDivElement, ResumeTemplate1Props>((
   const isEmpty = !name && !role && !email && !summary && (!skills || skills.length === 0) && 
                   (!professionalPath || professionalPath.length === 0) && 
                   (!educationDetails || educationDetails.length === 0);
+  
+  // Show placeholder content only if we're in shrinked mode and have no data
+  const showPlaceholder = isEmpty && isShrinked;
 
   return (
     <div className={classNames(cls.resume, {
       [cls.shrinked]: isShrinked,
-      [cls.placeholderContent]: isEmpty
+      [cls.placeholderContent]: showPlaceholder
     })}>
       <div ref={ref} style={{
         top: `${contentSpace || 0}px`,
@@ -83,40 +86,40 @@ const ResumeTemplate1 = React.forwardRef<HTMLDivElement, ResumeTemplate1Props>((
               )}
               <div className={cls.imgText}>
                 <span contentEditable={allowEditing} className={cls.name}>
-                  {name || (isEmpty ? "Your Name" : "")}
+                  {name || (showPlaceholder ? "Your Name" : "")}
                 </span>
                 <span contentEditable={allowEditing} className={cls.role}>
-                  {role || (isEmpty ? "Your Position" : "")}
+                  {role || (showPlaceholder ? "Your Position" : "")}
                 </span>
                 <span contentEditable={allowEditing} className={cls.notbold}>
-                  {email || (isEmpty ? "your.email@example.com" : "")}
+                  {email || (showPlaceholder ? "your.email@example.com" : "")}
                 </span>
               </div>
             </div>
             
-            {(experience || isEmpty) && (
+            {(experience || showPlaceholder) && (
               <div className={cls.infoName}>
                 <span className={cls.bold}>Experience:</span>
                 <span contentEditable={allowEditing} className={cls.notbold}>
-                  {experience || (isEmpty ? "Your years of experience" : "")}
+                  {experience || (showPlaceholder ? "Your years of experience" : "")}
                 </span>
               </div>
             )}
 
-            {(education || isEmpty) && (
+            {(education || showPlaceholder) && (
               <div className={cls.edName}>
                 <span className={cls.bold}>Education:</span>
                 <span contentEditable={allowEditing} className={cls.notbold}>
-                  {education || (isEmpty ? "Your education background" : "")}
+                  {education || (showPlaceholder ? "Your education background" : "")}
                 </span>
               </div>
             )}
             
-            {(location || isEmpty) && (
+            {(location || showPlaceholder) && (
               <div className={cls.loName}>
                 <span className={cls.bold}>Location:</span>
                 <span contentEditable={allowEditing} className={cls.notbold}>
-                  {location || (isEmpty ? "Your location" : "")}
+                  {location || (showPlaceholder ? "Your location" : "")}
                 </span>
               </div>
             )}
@@ -124,25 +127,25 @@ const ResumeTemplate1 = React.forwardRef<HTMLDivElement, ResumeTemplate1Props>((
         </div>
 
         <div className={cls.mainInfo}>
-          {(summary?.length || isEmpty) && (
+          {(summary?.length || showPlaceholder) && (
             <div className={cls.abName}>
               <span className={cls.bold}>About Me:</span>
               <span contentEditable={allowEditing} className={cls.notbold}>
-                {summary || (isEmpty ? "A brief description about yourself, your skills, and career objectives. This section should highlight your key strengths and what makes you unique as a professional." : "")}
+                {summary || (showPlaceholder ? "A brief description about yourself, your skills, and career objectives. This section should highlight your key strengths and what makes you unique as a professional." : "")}
               </span>
             </div>
           )}
 
-          {(skills?.length || isEmpty) && (
+          {(skills?.length || showPlaceholder) && (
             <div className={cls.skName}>
               <span className={cls.bold}>Skills:</span>
               <span contentEditable={allowEditing} className={cls.notbold}>
-                {skills?.length ? skills.join(", ") : (isEmpty ? "JavaScript, React, Node.js, Python, SQL, Git" : "")}
+                {skills?.length ? skills.join(", ") : (showPlaceholder ? "JavaScript, React, Node.js, Python, SQL, Git" : "")}
               </span>
             </div>
           )}
 
-          {(professionalPath?.length || isEmpty) && (
+          {(professionalPath?.length || showPlaceholder) && (
             <div className={cls.experience}>
               <span className={cls.work}>Work Experience</span>
 
@@ -150,7 +153,7 @@ const ResumeTemplate1 = React.forwardRef<HTMLDivElement, ResumeTemplate1Props>((
                 professionalPath.map((item, index) => (
                   <ProfessionalPath allowEditing={allowEditing} key={`${item.name}-${index}`} {...item} />
                 ))
-              ) : isEmpty ? (
+              ) : showPlaceholder ? (
                 <div className={cls.professionalPathWrap}>
                   <div className={cls.cnName}>
                     <span className={cls.bold}>Company Name:</span>
@@ -182,14 +185,14 @@ const ResumeTemplate1 = React.forwardRef<HTMLDivElement, ResumeTemplate1Props>((
             </div>
           )}
 
-          {(educationDetails?.length || isEmpty) && (
+          {(educationDetails?.length || showPlaceholder) && (
             <div className={cls.experience}>
               <span className={cls.work}>Education</span>
               {educationDetails?.length ? (
                 educationDetails.map((item, index) => (
                   <EducationDetails education={item} key={`${item.name}-${index}`} allowEditing={!!allowEditing} />
                 ))
-              ) : isEmpty ? (
+              ) : showPlaceholder ? (
                 <div className={cls.educationBlock}>
                   <div className={cls.inName}>
                     <span className={cls.bold}>Institution:</span>
