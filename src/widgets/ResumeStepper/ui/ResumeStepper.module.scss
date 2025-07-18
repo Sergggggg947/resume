@@ -1,0 +1,196 @@
+* {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.ResumeStepperWrap {
+  display: flex;
+  flex-direction: column;
+  height: 90%;
+  gap: 64px;
+
+  :global {
+    .ant-steps {
+      display: flex;
+      justify-content: center;
+      text-align: center;
+      padding: 24px 0;
+    }
+
+    .ant-steps-item {
+      display: flex;
+      position: relative;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        top: 20px;
+        left: calc(50% + 20px);
+        width: calc(100% - 40px);
+        height: 2px;
+        background: linear-gradient(90deg, #e5e7eb 0%, #d1d5db 100%);
+        z-index: 1;
+      }
+      
+      &:last-child::after {
+        display: none;
+      }
+      
+      &.ant-steps-item-finish::after {
+        background: linear-gradient(90deg, #7c3aed 0%, #c026d3 100%);
+      }
+      
+      &.ant-steps-item-process::after {
+        background: linear-gradient(90deg, #7c3aed 50%, #e5e7eb 50%);
+      }
+    }
+
+    .ant-steps-item-icon {
+      width: 40px;
+      height: 40px;
+      line-height: 38px;
+      font-weight: 600;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+      color: #9ca3af;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-bottom: 12px;
+      border: 2px solid #e5e7eb;
+      font-size: 16px;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .ant-steps-item-process .ant-steps-item-icon {
+      background: linear-gradient(135deg, #7c3aed 0%, #8b5cf6 100%);
+      color: #ffffff;
+      border-color: #7c3aed;
+      box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+      transform: scale(1.1);
+    }
+
+    .ant-steps-item-finish .ant-steps-item-icon {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: #ffffff;
+      border-color: #10b981;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    }
+
+    .ant-steps-item-wait .ant-steps-item-icon {
+      background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+      color: #9ca3af;
+      border-color: #e5e7eb;
+    }
+
+    .ant-steps-item-content {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-height: 60px;
+    }
+
+    .ant-steps-item-title {
+      font-weight: 600;
+      font-size: 14px;
+      margin: 0;
+      text-align: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #6b7280;
+      transition: color 0.3s ease;
+      line-height: 1.4;
+      max-width: 120px;
+    }
+
+    .ant-steps-item-process .ant-steps-item-title {
+      color: #7c3aed;
+      font-weight: 700;
+    }
+
+    .ant-steps-item-finish .ant-steps-item-title {
+      color: #10b981;
+      font-weight: 600;
+    }
+
+    .ant-steps-item-description {
+      font-size: 12px;
+      color: #9ca3af;
+      text-align: center;
+      margin-top: 4px;
+      line-height: 1.3;
+    }
+
+    /* Enhanced hover effects */
+    .ant-steps-item:hover .ant-steps-item-icon {
+      transform: scale(1.05);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .ant-steps-item-process:hover .ant-steps-item-icon {
+      transform: scale(1.15);
+      box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .ant-steps {
+        flex-direction: column !important;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .ant-steps-item {
+        margin-bottom: 0;
+        position: relative;
+        width: 100%;
+        max-width: 300px;
+        
+        &::after {
+          content: '';
+          position: absolute;
+          width: 2px;
+          height: 40px;
+          background: linear-gradient(180deg, #e5e7eb 0%, #d1d5db 100%);
+          left: 50%;
+          top: 60px;
+          transform: translateX(-50%);
+        }
+        
+        &:last-child::after {
+          display: none;
+        }
+        
+        &.ant-steps-item-finish::after {
+          background: linear-gradient(180deg, #7c3aed 0%, #c026d3 100%);
+        }
+        
+        &.ant-steps-item-process::after {
+          background: linear-gradient(180deg, #7c3aed 50%, #e5e7eb 50%);
+        }
+      }
+
+      .ant-steps-item-content {
+        margin-top: 8px;
+        align-items: center;
+      }
+
+      .ant-steps-item-title {
+        max-width: 200px;
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .ant-steps-item-icon {
+        width: 36px;
+        height: 36px;
+        line-height: 34px;
+        font-size: 14px;
+      }
+
+      .ant-steps-item-title {
+        font-size: 12px;
+        max-width: 150px;
+      }
+    }
+  }
+}

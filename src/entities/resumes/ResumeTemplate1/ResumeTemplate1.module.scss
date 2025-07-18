@@ -1,0 +1,343 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+.resume {
+    width: 210mm; // A4 width
+    min-height: 297mm; // A4 height
+    background: white;
+    box-sizing: border-box;
+    padding: 20mm;
+    margin: 0 auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    
+    @media print {
+        box-shadow: none;
+        margin: 0;
+        padding: 15mm;
+    }
+}
+
+.shrinked {
+    width: 199px;
+    height: 281px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    font-size: 7px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    transform: scale(0.3);
+    transform-origin: top left;
+}
+
+.heading {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.heading_information {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact {
+    display: flex;
+    gap: 2px;
+}
+
+.profilePhotoClassic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    image-rendering: auto;
+    image-rendering: -webkit-optimize-contrast;
+    border: 3px solid #f0f0f0;
+    margin-bottom: 15px;
+}
+
+.imtext {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.imgText {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .name {
+        font-size: 28px;
+        font-weight: bold;
+        color: #2c3e50;
+        margin: 0;
+    }
+
+    .role {
+        color: #7C3AED;
+        font-weight: 600;
+        font-size: 18px;
+        margin: 0;
+    }
+
+    .notbold {
+        color: #666;
+        font-size: 14px;
+        margin: 0;
+    }
+}
+
+.infoName, .edName, .loName, .abName, .skName {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    padding: 8px 0;
+    
+    .bold {
+        font-weight: 600;
+        color: #2c3e50;
+        min-width: 100px;
+        flex-shrink: 0;
+    }
+    
+    .notbold {
+        color: #666;
+        flex: 1;
+        margin-left: 20px;
+        line-height: 1.4;
+    }
+}
+
+.cnName, .psName, .dcName, .esName, .respName, .achivName {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    
+    .bold {
+        font-weight: 600;
+        color: #2c3e50;
+        min-width: 120px;
+        flex-shrink: 0;
+    }
+    
+    .notbold, .notboldbold {
+        color: #666;
+        flex: 1;
+        margin-left: 20px;
+        line-height: 1.4;
+    }
+    
+    .boldEnd {
+        font-weight: 600;
+        color: #2c3e50;
+        min-width: 120px;
+        flex-shrink: 0;
+    }
+}
+
+.eyName, .inName, .leName, .faName, .spName {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    
+    .bold {
+        font-weight: 600;
+        color: #2c3e50;
+        min-width: 100px;
+        flex-shrink: 0;
+    }
+    
+    .notbold, .notboldbold {
+        color: #666;
+        flex: 1;
+        margin-left: 20px;
+        line-height: 1.4;
+    }
+}
+
+.achievements {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.achivLi {
+    background: #f8f9fa;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border-left: 3px solid #7C3AED;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #555;
+}
+
+.work {
+    font-weight: bold;
+    font-size: 20px;
+    color: #2c3e50;
+    margin: 30px 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #7C3AED;
+    display: inline-block;
+}
+
+.profilePhotoShrinked {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.bold {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.notbold {
+    color: #666;
+    line-height: 1.4;
+}
+
+.notboldbold {
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+.professionalPathWrap {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #fafafa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.skills {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.summary {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.experience {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.mainInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    min-height: 200mm; // Ensure minimum content height
+}
+
+.achievementItem {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.circle {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #7C3AED;
+    flex-shrink: 0;
+}
+
+.resumeContent {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.educationBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+    padding: 15px;
+    background: #fafafa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+// Empty state styling
+.emptySection {
+    padding: 40px 20px;
+    text-align: center;
+    color: #999;
+    border: 2px dashed #ddd;
+    border-radius: 8px;
+    margin: 20px 0;
+    
+    .emptyTitle {
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 8px;
+        color: #666;
+    }
+    
+    .emptyDescription {
+        font-size: 14px;
+        color: #999;
+    }
+}
+
+// Placeholder content for empty resume
+.placeholderContent {
+    .name {
+        color: #ccc !important;
+        
+        &:empty::before {
+            content: "Your Name";
+            color: #ccc;
+        }
+    }
+    
+    .role {
+        color: #ccc !important;
+        
+        &:empty::before {
+            content: "Your Position";
+            color: #ccc;
+        }
+    }
+    
+    .notbold {
+        &:empty::before {
+            content: "Information will appear here";
+            color: #ccc;
+            font-style: italic;
+        }
+    }
+}
