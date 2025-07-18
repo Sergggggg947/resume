@@ -8,6 +8,7 @@ import { useAtomValue } from "jotai";
 import { ResumeData } from "@entities/resumes/ResumeTemplate1/api/types";
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import React from "react";
 
 // };
 
@@ -66,8 +67,7 @@ function ResumeContainer() {
           <div className={cls.containter}>
             <div className={cls.resumeWrap}>
               {pageOffsets.map((offsets, idx) => (
-                <>
-              <React.Fragment key={`page-${idx}`}>
+                <React.Fragment key={`page-${idx}`}>
                   <div className={cls.resumePageBreak}>
                     <ResumeTemplate1
                       key={offsets}
@@ -76,8 +76,8 @@ function ResumeContainer() {
                       contentSpace={offsets}
                     />
                   </div>
-                </>
-              </React.Fragment>
+                </React.Fragment>
+              ))}
             </div>
           </div>
         </div>
